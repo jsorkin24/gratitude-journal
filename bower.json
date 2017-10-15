@@ -1,0 +1,30 @@
+{
+  "name": "gratitude-journal",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Jane Sorkin <sorkinjane@gmail.com>"
+  ],
+  "dependencies": {
+    "angular": "latest",
+    "jquery": "^3.2.1",
+    "angular-animate": "1.6.6",
+    "angular-bootstrap": "^2.5.0",
+    "angular-ui-router": "^0.3.1",
+    "angular-toastr": "2.1.1",
+    "animate.css": "latest",
+    "bootstrap": "latest"
+  },
+  "resolutions": {
+    "angular": "1.6.6"
+  },
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

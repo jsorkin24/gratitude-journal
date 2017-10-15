@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('app', [])
+        .module('app', ['ui.router', 'ui.bootstrap'])
         .config(RouteConfig)
         .run()
 

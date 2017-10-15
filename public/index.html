@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html ng-app='app' ng-controller='noteController as noteCtrl'>
+<html>
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href='public/css/bootstrap.min.css'>
     <link rel="stylesheet" href='public/css/style.css'>
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light|Oswald:700" rel="stylesheet">
-
 </head>
 
 <body>
@@ -34,16 +33,12 @@
                 <button type='submit' class='btn btn-lg btn-blue' ng-click='noteCtrl.submit()'>start the day</button>
             </form>
         </div>
+        <div class='col-sm-6 col-sm-offset-3' ng-repeat='item in noteCtrl.items'>
+            <h1>{{item.description}}</h1>
+        </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
-    <script src="public/modules/app.js"></script>
-    <script src="public/modules/module.js"></script>
-    <script src="public/modules/note.controller.js"></script>
-    <script src="public/services/note.service.js"></script>
-
-
-
-
+    <script src="public/build/vendor.js"></script>
+    <script src="public/build/app.js"></script>
 </body>
 
 </html>

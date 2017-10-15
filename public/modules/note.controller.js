@@ -10,7 +10,6 @@
         'use strict'
         var vm = this;
         vm.date = new Date();
-        vm.item = {}
 
         vm.submit = () => {
             debugger;
