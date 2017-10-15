@@ -12,7 +12,7 @@ $(function () {
 (function () {
     'use strict';
 
-    angular.module('app', ['ui.router', 'ui.bootstrap']).config(RouteConfig).run();
+    angular.module('app', ['ui.router', 'ui.bootstrap', 'app.notes', 'app.services']).config(RouteConfig).run();
 
     function RouteConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise("/");
@@ -26,53 +26,82 @@ $(function () {
 (function () {
     'use strict';
 
-    angular.module('app', ['ui.router']).config(RouteConfig);
+    angular.module('app.notes', ['ui.router']).config(RouteConfig);
 
     RouteConfig.$inject = ['$stateProvider'];
 
     function RouteConfig($stateProvider) {
         $stateProvider.state("app", {
             url: "/",
-            abstract: true,
-            resolve: {
-                getAllNotes: getAllNotes
+            // abstract: true,
+            views: {
+                root: {
+                    templateUrl: 'public/modules/notes/note-layout.html',
+                    controller: 'noteController as noteCtrl',
+                    resolve: {
+                        notes: getAllNotes
+                    }
+                }
             }
         });
-    };
-})();
+    }
 
-function getAllNotes(noteService) {
-    return noteService.getAll().then(function (data) {
-        return data.items;
-    }).catch(function (error) {
-        console.log(error);
-    });
-}
+    function getAllNotes(noteService) {
+        return noteService.getAll().then(function (data) {
+            return data.items;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+})();
 'use strict';
 
 (function () {
     'use strict';
 
-    angular.module('app').controller('noteController', NoteController);
+    angular.module('app.services', []);
+})();
+'use strict';
 
-    NoteController.$inject = ['noteService'];
+(function () {
+    'use strict';
 
-    function NoteController(noteService) {
+    angular.module('app.notes').controller('noteController', NoteController);
+
+    NoteController.$inject = ['noteService', 'notes'];
+
+    function NoteController(noteService, notes) {
         'use strict';
 
         var vm = this;
         vm.date = new Date();
+        vm.items = notes;
+        vm.submitButton = 'start the day';
 
         vm.submit = function () {
-            debugger;
-            noteService.insert(vm.item).then(_onSendSuccess).catch(_onError);
+            if (vm.item._id) {
+                noteService.update(vm.item).then(_onSuccess).catch(_onError);
+            } else {
+                noteService.insert(vm.item).then(_onSuccess).catch(_onError);
+            }
         };
 
-        function _onSendSuccess(data) {
-            debugger;
+        vm.delete = function (id) {
+            noteService.remove(id).then(_onSuccess).catch(_onError);
+        };
+
+        vm.edit = function (id) {
+            vm.submitButton = 'update';
+            noteService.getById(id).then(_onGetByIdSuccess).catch(_onError);
+        };
+
+        function _onGetByIdSuccess(data) {
+            vm.item = data.item;
+        }
+
+        function _onSuccess(data) {
             vm.item = null;
-            // vm.fundingProposalForm.$setPristine();
-            // toastr.success('Proposal Sent for Review');
+            location.reload();
         }
 
         function _onError(data) {
@@ -85,7 +114,7 @@ function getAllNotes(noteService) {
 (function () {
     'use strict';
 
-    angular.module('app').factory('noteService', NoteServiceFactory);
+    angular.module('app.services').factory('noteService', NoteServiceFactory);
 
     NoteServiceFactory.$inject = ['$http', '$q'];
 
@@ -93,12 +122,13 @@ function getAllNotes(noteService) {
         return {
             getAll: getAll,
             getById: getById,
-            insert: insert
-
+            insert: insert,
+            remove: remove,
+            update: update
         };
 
         function getAll() {
-            return $http.get('/api/notes?active=true').then(xhrSuccess).catch(onError);
+            return $http.get('/api/notes').then(xhrSuccess).catch(onError);
         }
 
         function getById(id, onSuccess, onError) {
@@ -107,6 +137,15 @@ function getAllNotes(noteService) {
 
         function insert(itemData, onSuccess, onError) {
             return $http.post('/api/notes', itemData).then(xhrSuccess).catch(onError);
+        }
+
+        function remove(id, onSuccess, onError) {
+            debugger;
+            return $http.delete('/api/notes/' + id).then(xhrSuccess).catch(onError);
+        }
+
+        function update(itemData, onSuccess, onError) {
+            return $http.put('/api/notes/' + itemData._id, itemData).then(xhrSuccess).catch(onError);
         }
 
         function xhrSuccess(response) {

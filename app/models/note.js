@@ -5,6 +5,10 @@ const noteSchema = new Schema({
     description: {
         type: String,
         required: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
     }
 })
 

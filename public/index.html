@@ -1,44 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 
 <head>
-    <link rel="stylesheet" href='public/css/bootstrap.min.css'>
-    <link rel="stylesheet" href='public/css/style.css'>
-    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light|Oswald:700" rel="stylesheet">
+    <base href="/">
+    <meta charset='UTF-8'>
+    <link rel="stylesheet" href='/public/css/assets/bootstrap.min.css' />
+    <link rel="stylesheet" href='/public/css/style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light|Oswald:700|Josefin+Sans:100" rel="stylesheet" />
 </head>
 
 <body>
-    <div class='col-sm-12'>
-
-        <div class='col-sm-2 col-sm-offset-5'>
-            <div class="whale whale-color">
-                <div class="top abs">
-                    <div class="front abs"></div>
-                </div>
-                <div class="bottom abs">
-                    <div class="tummy abs"></div>
-                </div>
-                <div class="fin abs"></div>
-                <div class="backfin abs"></div>
-                <div class="eyes abs"></div>
-            </div>
-            <!-- <div class="shadow"></div>
-        <h5 class="title">Move your mouse</h5> -->
-        </div>
-        <div class='col-sm-6 col-sm-offset-3  note-box'>
-            <h1 class='text-center'>Daily Gratitude Journal</h1>
-            <h2 class='text-center'> {{noteCtrl.date | date:'MMMM dd, yyyy'}}</h2>
-            <form novalidate>
-                <textarea ng-model='noteCtrl.item.description' placeholder="Today I am grateful for....."></textarea></input>
-                <button type='submit' class='btn btn-lg btn-blue' ng-click='noteCtrl.submit()'>start the day</button>
-            </form>
-        </div>
-        <div class='col-sm-6 col-sm-offset-3' ng-repeat='item in noteCtrl.items'>
-            <h1>{{item.description}}</h1>
-        </div>
-    </div>
     <script src="public/build/vendor.js"></script>
     <script src="public/build/app.js"></script>
+    <div ui-view='root'></div>
 </body>
 
 </html>

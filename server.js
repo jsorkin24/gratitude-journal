@@ -35,6 +35,9 @@ app.use(require('./app/routes'));
 app.use('/public', express.static(path.join(__dirname, 'public'), {
     fallthrough: false
 }));
+app.use('/public/build', express.static(path.join(__dirname, 'public/build'), {
+    fallthrough: false
+}));
 
 // START APP  ===============================================
 app.listen(port, () => {
