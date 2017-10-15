@@ -9,7 +9,9 @@
     function NoteServiceFactory($http, $q) {
         return {
             getAll: getAll,
-            getById: getById
+            getById: getById,
+            insert: insert
+
         }
 
         function getAll() {
@@ -20,6 +22,12 @@
 
         function getById(id, onSuccess, onError) {
             return $http.get(`/api/notes/${id}`)
+                .then(xhrSuccess)
+                .catch(onError)
+        }
+
+        function insert(itemData, onSuccess, onError) {
+            return $http.post('/api/notes', itemData)
                 .then(xhrSuccess)
                 .catch(onError)
         }
