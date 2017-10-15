@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app='app' ng-controller='appController as appCtrl'>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href='public/css/style.css'>
+
+</head>
+
+<body>
+    <div class='col-sm-12'>
+        <div class='col-sm-6 col-sm-offset-3'>
+            <h1 class='text-center'>Daily Gratitude Journal</h1>
+            <h2 class='text-center'> {{appCtrl.date | date:'MMMM dd, yyyy'}}</h2>
+            <form novalidate>
+                <textarea ng-model='appCtrl.note'></textarea></input>
+                <button type='submit' class='btn btn-lg btn-blue' ng-click='appCtrl.submit()'>Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
+    <script src="public/modules/app.js"></script>
+    <script src="public/modules/module.js"></script>
+    <script src="public/modules/app.controller.js"></script>
+
+
+
+</body>
+
+</html>
