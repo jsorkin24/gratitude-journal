@@ -140,7 +140,6 @@ $(function () {
         }
 
         function remove(id, onSuccess, onError) {
-            debugger;
             return $http.delete('/api/notes/' + id).then(xhrSuccess).catch(onError);
         }
 
