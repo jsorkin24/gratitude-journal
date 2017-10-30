@@ -52,7 +52,6 @@
                 }
             );
             allPostsList.splice(removeIndex, 1);
-            vm.item = null;
         }
 
 

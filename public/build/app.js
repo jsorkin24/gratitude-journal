@@ -105,7 +105,6 @@ $(function () {
                 return element._id === vm.items._id;
             });
             allPostsList.splice(removeIndex, 1);
-            vm.item = null;
         }
 
         function _onSuccess(data) {
