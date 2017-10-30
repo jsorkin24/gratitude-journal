@@ -8,7 +8,8 @@ Studies show that gratitude can improve physical and psychological health as wel
 - [Installation](#installation)
 
 ## Demo
-Coming soon. 
+👉 Watch it <a href="https://daily-gratitude-journal.herokuapp.com/" target="_blank">here</a>.
+<br>
 
 ## Screenshots:
 
