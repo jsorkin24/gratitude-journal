@@ -1,27 +1,31 @@
-<div class='col-sm-12'>
-    <div class='col-sm-3 col-sm-offset-5'>
-        <div class="whale whale-color">
-            <div class="top abs">
-                <div class="front abs"></div>
+<div class='container'>
+    <div class='row'>
+        <div class='col-sm-5 col-sm-offset-4'>
+            <div class="whale whale-color">
+                <div class="top abs">
+                    <div class="front abs"></div>
+                </div>
+                <div class="bottom abs">
+                    <div class="tummy abs"></div>
+                </div>
+                <div class="fin abs"></div>
+                <div class="backfin abs"></div>
+                <div class="eyes abs"></div>
             </div>
-            <div class="bottom abs">
-                <div class="tummy abs"></div>
-            </div>
-            <div class="fin abs"></div>
-            <div class="backfin abs"></div>
-            <div class="eyes abs"></div>
         </div>
     </div>
-    <div class='col-sm-6 col-sm-offset-3'>
-        <h1 class='text-center'>Daily Gratitude Journal</h1>
-        <h2 class='text-center'> {{noteCtrl.date | date:'MMMM dd, yyyy'}}</h2>
-        <form novalidate>
-            <textarea ng-model='noteCtrl.item.description' placeholder="Today I am grateful for....."></textarea>
-            <button type='submit' class='btn btn-lg btn-blue' ng-click='noteCtrl.submit()'>{{noteCtrl.submitButton}}</button>
-        </form>
+    <div class='row'>
+        <div class='col-sm-10 col-sm-offset-1'>
+            <h1 class='text-center'>Daily Gratitude Journal</h1>
+            <h2 class='text-center'> {{noteCtrl.date | date:'MMMM dd, yyyy'}}</h2>
+            <form novalidate>
+                <textarea ng-model='noteCtrl.item.description' placeholder="Today I am grateful for....."></textarea>
+                <button type='submit' class='btn btn-lg btn-blue' ng-click='noteCtrl.submit()'>{{noteCtrl.submitButton}}</button>
+            </form>
+        </div>
     </div>
-    <div class='col-sm-12'>
-        <div class="col-sm-2 post-it" ng-repeat='item in noteCtrl.items'>
+    <div class='row'>
+        <div class="col-sm-3 post-it" ng-repeat='item in noteCtrl.items'>
             <p class="sticky taped">
                 <strong>{{item.date | date:'MMMM dd, yyyy'}}</strong><br> {{item.description}}<br>
                 <span ng-click='noteCtrl.delete(item._id)()'><i class='glyphicon glyphicon-trash'></i></span>

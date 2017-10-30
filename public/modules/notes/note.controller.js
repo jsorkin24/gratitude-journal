@@ -28,7 +28,7 @@
 
         vm.delete = (id) => {
             noteService.remove(id)
-                .then(_onSuccess)
+                .then(_onDeleteSuccess)
                 .catch(_onError)
         }
 
@@ -44,9 +44,21 @@
 
         }
 
+        function _onDeleteSuccess() {
+            let allPostsList = vm.items;
+            let removeIndex = allPostsList.findIndex(
+                (element, index, allPostsList) => {
+                    return element._id === vm.items._id;
+                }
+            );
+            allPostsList.splice(removeIndex, 1);
+            vm.item = null;
+        }
+
+
         function _onSuccess(data) {
             vm.item = null;
-            location.reload();
+            // location.reload();
 
         }
 

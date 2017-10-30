@@ -87,7 +87,7 @@ $(function () {
         };
 
         vm.delete = function (id) {
-            noteService.remove(id).then(_onSuccess).catch(_onError);
+            noteService.remove(id).then(_onDeleteSuccess).catch(_onError);
         };
 
         vm.edit = function (id) {
@@ -99,9 +99,18 @@ $(function () {
             vm.item = data.item;
         }
 
+        function _onDeleteSuccess() {
+            var allPostsList = vm.items;
+            var removeIndex = allPostsList.findIndex(function (element, index, allPostsList) {
+                return element._id === vm.items._id;
+            });
+            allPostsList.splice(removeIndex, 1);
+            vm.item = null;
+        }
+
         function _onSuccess(data) {
             vm.item = null;
-            location.reload();
+            // location.reload();
         }
 
         function _onError(data) {
